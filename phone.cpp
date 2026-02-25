@@ -7,10 +7,10 @@ using namespace std;
 
 class Phone
 {
-    private:
+    public:
         string model;
         string brand;
-        int year;
+        int y;
         double price;
 
         static int counter;
@@ -18,9 +18,9 @@ class Phone
 
     public:
         //constructors
-        Phone(string model, string brand, int year, double price)
+        Phone(string model, string brand, int y, double price)
         {
-            createPhone(model, brand, year, price);
+            createPhone(model, brand, y, price);
         }
 
         Phone (string model, string brand)
@@ -34,11 +34,11 @@ class Phone
         }
 
     private:
-        void createPhone(string model, string brand, int year, double price)
+        void createPhone(string model, string brand, int y, double price)
         {
             setModel(model);
             setBrand(brand);
-            setYear(year);
+            setYear(y);
             setPrice(price);
 
             id = ++counter;
@@ -56,12 +56,12 @@ class Phone
             this->brand = brand;
         }
 
-        void setYear(int year)
+        void setYear(int y)
         {
-            if (year < 0)
+            if (y < 0)
             throw invalid_argument("The year cannot be negative.");
 
-            this->year = year;
+            this->y = y;
         }
 
         void setPrice(double price)
@@ -85,7 +85,7 @@ class Phone
 
         int getYear()
         {
-            return year;
+            return y;
         }
 
         double getPrice()
@@ -106,10 +106,7 @@ class Phone
 
         string toString()
         {
-            stringstream ss;
-            ss << getModel() << " " << getBrand() << " " << getYear()
-               << " " << getPrice();
-            return ss.str();
+            return model + " " + brand + " " + to_string(y) + " " + to_string(price);
         }
 };
 int Phone::counter = 0;
